@@ -32,6 +32,26 @@ const Main = () => {
         }
     }
 
+    //1.YOL:
+    // const addTodo = async(task:string) =>{
+    //     try {
+    //         await axios.post(url,{task,isDone:false})
+    //     } catch (error) {
+            
+    //     }
+    // }
+
+    //2.YOL:
+    type AddFn=(task:string)=>Promise<void>
+    const addTodo:AddFn = async(task:string) =>{
+        try {
+            await axios.post(url,{task,isDone:false})
+            getTodos()
+        } catch (error) {
+            
+        }
+    }
+
     useEffect(() => {
       getTodos()
     }, [])
@@ -40,7 +60,7 @@ const Main = () => {
   return (
     <Container>
       <Header/>
-      <AddTodo/>
+      <AddTodo addTodo={addTodo}/>
     </Container>
   )
 }

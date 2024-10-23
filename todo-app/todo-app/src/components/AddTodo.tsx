@@ -2,12 +2,22 @@ import { Save } from '@mui/icons-material'
 import { Box, Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
 
-const AddTodo = () => {
+interface IAddTodo{
+    addTodo:(task:string)=>Promise<void>
+}
+
+//**1.yöntem**//
+// const AddTodo = ({addTodo}:{addTodo:(task:string)=>Promise<void>}) => {
+
+//**2.yöntem**//
+const AddTodo = ({addTodo}:IAddTodo) => {
     const [task, setTask] = useState<string>("")
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         console.log(task)
+        addTodo(task)
+        setTask("")
 
     }
 
@@ -28,6 +38,7 @@ const AddTodo = () => {
         sx={{minWidth:{xs:"100%", sm:"50%"},
         height:"50px", m:1}}
         onChange={e=>setTask(e.target.value)}
+        value={task}
       
         />
 
