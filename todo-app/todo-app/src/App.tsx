@@ -1,10 +1,15 @@
 import React from 'react';
+import Main from './pages/Main';
+import { Container } from '@mui/material';
 
 function App() {
+ 
+ 
   return (
-    <div className="App">
-      <h1>TypeScript</h1>
-    </div>
+    <Container>
+      <Main/>
+    </Container>
+    
   );
 }
 
