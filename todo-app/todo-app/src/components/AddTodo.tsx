@@ -5,10 +5,22 @@ import React, { useState } from 'react'
 const AddTodo = () => {
     const [task, setTask] = useState<string>("")
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
+        e.preventDefault()
+        console.log(task)
+
+    }
+
     
 
   return (
-    <Box component="form" sx={{display:{xs:"block", sm:"flex"}, justifyContent:{xs:"flex-start",sm:"center"}, m:{xs:1, sm:"auto"}, height:{xs:"120px", sm:"80px"}}}>
+    <Box
+    component="form"
+    onSubmit={handleSubmit}
+    sx={{display:{xs:"block", sm:"flex"},
+    justifyContent:{xs:"flex-start",sm:"center"},
+    m:{xs:1, sm:"auto"},
+    height:{xs:"120px", sm:"80px"}}}>
 
         <TextField 
         variant='outlined'
