@@ -3,13 +3,14 @@ import Header from '../components/Header'
 import { Container } from '@mui/material'
 import AddTodo from '../components/AddTodo'
 import axios from 'axios';
+import TodoList from '../components/TodoList';
 
-interface ITodoType {
-    task:string;
-    isDone:boolean;
-    id:string | number;
-    owner?: string //bu alan zorunlu değil, optinal. Varsa type'ı string
-}
+// interface ITodoType {
+//     task:string;
+//     isDone:boolean;
+//     id:string | number;
+//     owner?: string //bu alan zorunlu değil, optinal. Varsa type'ı string
+// }
 
 const url = "https://634ac3fc5df952851418480f.mockapi.io/api/todos";
 
@@ -61,6 +62,7 @@ const Main = () => {
     <Container>
       <Header/>
       <AddTodo addTodo={addTodo}/>
+      <TodoList todos={todos}/>
     </Container>
   )
 }
