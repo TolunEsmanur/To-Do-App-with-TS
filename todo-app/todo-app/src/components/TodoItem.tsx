@@ -4,9 +4,10 @@ import { FC } from 'react'
 
 interface ITodoItem {
     todo:ITodoType
+    toogleTodo:ToogleFn
 }
 
-const TodoItem : FC<ITodoItem> = ({todo}) => {
+const TodoItem : FC<ITodoItem> = ({todo,toogleTodo}) => {
   return (
     <ListItem
     disableGutters
@@ -17,7 +18,7 @@ const TodoItem : FC<ITodoItem> = ({todo}) => {
       </IconButton>
     }
   >
-    <ListItemText primary={todo.task}  />
+    <ListItemText primary={todo.task} onClick={()=>toogleTodo(todo)} />
   </ListItem>
   )
 }

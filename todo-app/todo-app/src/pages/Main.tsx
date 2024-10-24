@@ -43,13 +43,22 @@ const Main = () => {
     // }
 
     //2.YOL:
-    type AddFn=(task:string)=>Promise<void>
-    const addTodo:AddFn = async(task:string) =>{
+    // type AddFn=(task:string)=>Promise<void>
+    const addTodo:AddFn = async(task) =>{
         try {
             await axios.post(url,{task,isDone:false})
             getTodos()
         } catch (error) {
             
+        }
+    }
+
+    const toogleTodo:ToogleFn = async(todo) =>{
+        try {
+            await axios.put(`${url}/${todo.id}`,{...todo, isDone:!todo.isDone});
+            getTodos()
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -62,7 +71,7 @@ const Main = () => {
     <Container>
       <Header/>
       <AddTodo addTodo={addTodo}/>
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} toogleTodo={toogleTodo}/>
     </Container>
   )
 }
