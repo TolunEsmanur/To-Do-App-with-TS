@@ -6,9 +6,10 @@ import  "./style.css"
 interface ITodoList {
   todos:ITodoType[]
   toogleTodo: ToogleFn
+  deleteTodo:DeleteFn
 }
 
-const TodoList: React.FC<ITodoList> = ({todos,toogleTodo}) => {
+const TodoList: React.FC<ITodoList> = ({todos,toogleTodo,deleteTodo}) => {
   const inProgressTodos = todos.filter(todo=>!todo.isDone)
   const completedTodos = todos.filter(todo=>  todo.isDone)
   return (
@@ -37,7 +38,7 @@ const TodoList: React.FC<ITodoList> = ({todos,toogleTodo}) => {
         <Typography className="title" color="secondary"
         align="center" variant="h4">InProgress Todos</Typography>
         {
-          inProgressTodos.length ? inProgressTodos.map(todo=><TodoItem key={todo.id} todo={todo} toogleTodo={toogleTodo} />) : 
+          inProgressTodos.length ? inProgressTodos.map(todo=><TodoItem key={todo.id} todo={todo} toogleTodo={toogleTodo} deleteTodo={deleteTodo} />) : 
           <Typography color="error" mt={3}>No InProgress Todos</Typography>
         }
       </Grid>
@@ -56,7 +57,7 @@ const TodoList: React.FC<ITodoList> = ({todos,toogleTodo}) => {
         <Typography className="title" sx={{color:"green"}}
         align="center" variant="h4">Completed Todos</Typography>
         {
-          completedTodos.length ? completedTodos.map(todo=><TodoItem key={todo.id} todo={todo} toogleTodo={toogleTodo}/>) : 
+          completedTodos.length ? completedTodos.map(todo=><TodoItem key={todo.id} todo={todo} toogleTodo={toogleTodo} deleteTodo={deleteTodo}/>) : 
           <Typography color="error" mt={3}>No Completed Todos!</Typography>
         }
       </Grid>

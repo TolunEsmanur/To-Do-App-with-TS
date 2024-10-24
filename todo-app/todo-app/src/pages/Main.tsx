@@ -62,6 +62,15 @@ const Main = () => {
         }
     }
 
+    const deleteTodo:DeleteFn = async(id) =>{
+        try {
+            await axios.delete(`${url}/${id}`)
+            getTodos()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
       getTodos()
     }, [])
@@ -71,7 +80,7 @@ const Main = () => {
     <Container>
       <Header/>
       <AddTodo addTodo={addTodo}/>
-      <TodoList todos={todos} toogleTodo={toogleTodo}/>
+      <TodoList todos={todos} toogleTodo={toogleTodo} deleteTodo={deleteTodo}/>
     </Container>
   )
 }
